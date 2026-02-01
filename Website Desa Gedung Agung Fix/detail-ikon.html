@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Ikon | Desa Gedung Agung</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 'oswald': ['Oswald', 'sans-serif'], 'roboto': ['Roboto', 'sans-serif'] },
+                    colors: { 'primary': '#00bfa5', 'dark-bg': '#0f172a' }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Roboto', sans-serif; background-color: #0f172a; color: #e2e8f0; }
+        .content-area p { margin-bottom: 1.8rem; line-height: 1.8; color: #cbd5e1; text-align: justify; font-size: 1.1rem; }
+        .glass-card { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); }
+        .accent-text { color: #00bfa5; font-weight: 600; }
+        @keyframes subtle-zoom { from { transform: scale(1); } to { transform: scale(1.05); } }
+        .hero-zoom { animation: subtle-zoom 10s infinite alternate ease-in-out; }
+        
+        .nav-link { position: relative; padding-bottom: 0.5rem; transition: color 0.3s ease; }
+        .nav-link:hover { color: #00bfa5; }
+        .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: #00bfa5; transition: width 0.3s ease; }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+    </style>
+</head>
+<body>
+
+    <nav class="fixed top-0 left-0 w-full z-50 px-6 md:px-12 lg:px-20 py-4 transition-all duration-300 bg-dark-bg/30 backdrop-blur-md border-b border-white/10">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 bg-primary/20 backdrop-blur rounded-full flex items-center justify-center border border-primary/30">
+                    <i class="fas fa-mountain text-primary"></i>
+                </div>
+                <span class="text-white text-lg font-bold tracking-wide uppercase font-oswald">Gedung Agung</span>
+            </div>
+            
+            <ul class="hidden lg:flex items-center space-x-8 text-white text-xs font-bold tracking-widest uppercase">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="profil.html" class="nav-link">Profil</a></li>
+                <li><a href="geografis.html" class="nav-link">Peta</a></li>
+                <li><a href="galeri.html" class="nav-link">Galeri</a></li>
+                <li><a href="explore.html" class="nav-link text-primary active">Explore</a></li>
+                <li><a href="kontak.html" class="nav-link">Kontak</a></li>
+            </ul>
+
+            <button class="lg:hidden text-white hover:text-primary transition">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+    </nav>
+
+    <a href="explore.html" class="fixed bottom-8 right-8 z-40 flex items-center gap-3 px-5 py-2.5 bg-dark-bg/90 backdrop-blur-md border border-primary/30 text-primary rounded-full hover:bg-primary hover:text-dark-bg transition-all duration-300 group shadow-lg">
+        <i class="fas fa-arrow-left"></i>
+        <span class="text-xs font-bold uppercase tracking-widest">Kembali</span>
+    </a>
+
+    <div class="relative h-[60vh] w-full overflow-hidden">
+        <img id="hero-img" src="" class="w-full h-full object-cover hero-zoom" alt="Hero">
+        <div class="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-[#0f172a]/40 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 w-full p-8 md:p-20">
+            <div class="max-w-4xl">
+                <span id="top-tag" class="text-primary font-bold uppercase tracking-[0.3em] text-xs mb-4 block"></span>
+                <h1 id="main-title" class="font-oswald text-5xl md:text-7xl font-bold text-white uppercase leading-tight mb-4"></h1>
+                <div class="w-24 h-1.5 bg-primary rounded-full shadow-[0_0_15px_rgba(0,191,165,0.6)]"></div>
+            </div>
+        </div>
+    </div>
+
+    <main class="max-w-7xl mx-auto px-6 py-20 grid grid-cols-1 lg:grid-cols-3 gap-16">
+        <div class="lg:col-span-2 content-area">
+            <h2 id="sub-title" class="font-oswald text-3xl text-white mb-8 uppercase tracking-wide flex items-center gap-3"></h2>
+            <div id="content-text"></div>
+        </div>
+
+        <div class="space-y-8">
+            <div class="glass-card p-8 rounded-3xl sticky top-32">
+                <h3 class="font-oswald text-primary text-xl uppercase mb-6 border-b border-primary/20 pb-4">Info Cepat</h3>
+                <div id="sidebar-info" class="space-y-4 text-sm"></div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Data Konten
+        const dataKonten = {
+        'identitas': {
+    tag: 'Laporan Khusus & Arsip Wilayah',
+    title: 'Akulturasi Budaya di Gerbang Transisi',
+    subtitle: 'Analisis Historis, Geografis, dan Dinamika Agraria Gedung Agung',
+    img: 'https://images.pexels.com/photos/235925/pexels-photo-235925.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1',
+    text: `
+        <div class="flex flex-col lg:flex-row gap-4 lg:gap-8 -ml-4 lg:-ml-12">
+            <div class="lg:w-[15%] flex flex-col gap-8 border-r border-white/5 pr-4 shrink-0">
+                <div>
+                    <span class="text-[9px] text-primary uppercase tracking-[0.3em] font-bold block mb-4 border-b border-primary/20 pb-1 text-left">Kontributor</span>
+                    <div class="flex flex-col gap-3 justify-start">
+                        <div class="w-10 h-10 rounded-sm bg-white/5 flex items-center justify-center text-[12px] text-primary font-bold border border-white/10 shadow-lg">GA</div>
+                        <div>
+                            <p class="text-white text-[10px] font-bold leading-tight uppercase tracking-wider">Media Center</p>
+                            <p class="text-gray-500 text-[9px] mt-1 italic font-light">Literasi Desa</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-2">
+                    <span class="text-[9px] text-gray-500 uppercase tracking-[0.3em] font-bold block mb-3 text-left">Topik Utama</span>
+                    <div class="flex flex-col gap-2 justify-start">
+                        <span class="text-[9px] text-gray-400 hover:text-primary transition-colors cursor-default flex items-center gap-2">
+                            <span class="w-1 h-1 bg-primary/40 rounded-full"></span> #Geografis
+                        </span>
+                        <span class="text-[9px] text-gray-400 hover:text-primary transition-colors cursor-default flex items-center gap-2">
+                            <span class="w-1 h-1 bg-primary/40 rounded-full"></span> #Historis
+                        </span>
+                        <span class="text-[9px] text-gray-400 hover:text-primary transition-colors cursor-default flex items-center gap-2">
+                            <span class="w-1 h-1 bg-primary/40 rounded-full"></span> #Agraria
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:w-[85%] w-full pr-2">
+                <section class="mb-16">
+                    <div class="flex items-center gap-4 mb-8">
+                        <h2 class="font-oswald text-4xl text-white uppercase tracking-tighter leading-none">
+                            Letak Strategis <span class="text-primary italic">&</span> Masa Transisi
+                        </h2>
+                        <div class="h-[1px] flex-grow bg-gradient-to-r from-primary/30 to-transparent"></div>
+                    </div>
+                    
+                    <p class="text-2xl leading-relaxed text-gray-200 first-letter:text-8xl first-letter:font-bold first-letter:text-primary first-letter:mr-4 first-letter:float-left first-letter:leading-none mb-8 text-justify">
+                        Desa <span class="text-white font-bold underline decoration-primary/20 underline-offset-8">Gedung Agung</span> berdiri sebagai wilayah momentum transisi signifikan. Secara administratif, desa ini berakar di bawah naungan Kecamatan <span class="text-primary italic font-medium">Jati Agung, Lampung Selatan</span>.
+                    </p>
+                    
+                    <p class="text-gray-400 text-lg leading-loose text-justify">
+                        Namun, letak geografisnya yang berbatasan langsung dengan ibu kota provinsi menjadikannya gerbang utama yang kini bersiap melebur dalam dinamika metropolitan <span class="text-white font-bold italic border-b border-primary/40">Bandar Lampung</span>. Posisi ini memberikan Gedung Agung identitas ganda: sebuah desa yang tetap mempertahankan nilai-nilai kerakyatan, namun secara fungsional mulai mengadopsi efisiensi kota.
+                    </p>
+                </section>
+
+                <div class="my-14 group relative overflow-hidden rounded-sm border border-white/5 shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=1200" class="w-full h-[450px] object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-1000" alt="Lahan Pertanian">
+                    <div class="absolute top-4 left-4 bg-primary px-3 py-1 text-[9px] font-bold text-dark-bg uppercase tracking-widest shadow-xl">Visualisasi Wilayah</div>
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/95 p-8 border-l-4 border-primary ml-0">
+                        <p class="text-[13px] text-gray-300 font-medium italic mb-2">"Hamparan lahan di perbatasan Jati Agung yang menjadi saksi bisu perkembangan ekonomi agraris menuju urban."</p>
+                        <p class="text-[10px] text-primary/60 uppercase tracking-[0.4em] font-bold">Laporan Geografis 2026</p>
+                    </div>
+                </div>
+
+                <section class="mb-16">
+                    <h2 class="font-oswald text-3xl text-white mb-8 uppercase tracking-widest flex items-center gap-4 text-primary">
+                        <span class="w-8 h-[1px] bg-primary"></span> Akulturasi Budaya
+                    </h2>
+                    <p class="text-gray-400 text-lg leading-loose text-justify mb-8">
+                        Jantung dari kehidupan sosial di Gedung Agung didetaki oleh harmoni dua suku besar, yaitu <span class="text-white font-bold uppercase tracking-tighter">Suku Jawa dan Palembang</span>. Secara historis, kehadiran masyarakat Suku Jawa tidak lepas dari arus transmigrasi masa lampau yang membawa semangat agraris yang ulet, bertemu dengan Suku Palembang yang memiliki sejarah kuat di tanah Sumatera.
+                    </p>
+                    <div class="bg-white/[0.02] p-10 border-l-2 border-primary/50 rounded-r-sm italic text-2xl text-gray-200 font-light leading-relaxed tracking-wide shadow-inner">
+                        "Perpaduan budaya ini menciptakan dialektika sosial yang unik, di mana nilai gotong royong Jawa bersinergi dengan ketegasan dan keterbukaan budaya Sumatera."
+                    </div>
+                </section>
+
+                <section class="pb-10 pt-10 border-t border-white/5">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                        <div class="md:col-span-2">
+                             <h2 class="font-oswald text-3xl text-white mb-6 uppercase tracking-widest flex items-center gap-4">
+                                <i class="fas fa-mountain text-primary text-xl"></i> Keberkahan Tanah
+                            </h2>
+                            <p class="text-gray-400 text-lg leading-relaxed text-justify">
+                                Berada di kawasan Jati Agung, desa ini dikaruniai karakteristik tanah vulkanik yang sangat subur. Meskipun tantangan iklim global sering kali tidak menentu, tanah di sini tetap menunjukkan produktivitas luar biasa karena kadar unsur hara yang tinggi, menopang ketahanan ekonomi warga.
+                            </p>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <div class="w-full bg-primary/10 p-10 rounded-sm border border-primary/20 text-center relative overflow-hidden group">
+                                <i class="fas fa-bolt text-primary/5 text-8xl absolute -right-4 -bottom-4 group-hover:rotate-45 transition-transform duration-700"></i>
+                                <span class="text-7xl font-bold text-primary font-oswald tracking-tighter block leading-none">100</span>
+                                <p class="text-[10px] text-gray-400 uppercase font-bold tracking-[0.4em] mt-4 relative z-10 text-center">Hari Siklus Panen</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    `,
+    sidebar: `
+        <div class="sticky top-32 space-y-8">
+            <div class="p-6 bg-white/[0.01] border border-white/5 rounded-sm">
+                <h4 class="text-[10px] text-primary font-bold uppercase tracking-[0.3em] mb-6 flex items-center justify-between border-b border-white/5 pb-2 text-left">
+                    <span>Quick Stats</span>
+                    <i class="fas fa-chart-pie"></i>
+                </h4>
+                <div class="space-y-5">
+                    <div>
+                        <div class="flex justify-between text-[9px] mb-2 uppercase tracking-widest">
+                            <span class="text-gray-500">Produktivitas</span>
+                            <span class="text-white">92%</span>
+                        </div>
+                        <div class="w-full h-1 bg-white/5"><div class="w-[92%] h-full bg-primary shadow-[0_0_8px_#00bfa5]"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-[9px] mb-2 uppercase tracking-widest">
+                            <span class="text-gray-500">Tanah Subur</span>
+                            <span class="text-white">100%</span>
+                        </div>
+                        <div class="w-full h-1 bg-white/5"><div class="w-[100%] h-full bg-primary/60"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-6 bg-white/[0.03] border-t-2 border-primary shadow-2xl relative">
+                <span class="text-[9px] text-primary font-bold uppercase tracking-[0.4em] block mb-3 italic text-left">Did You Know?</span>
+                <p class="text-white text-xs leading-loose text-justify font-light opacity-80">
+                    Jati Agung merupakan zona transisi strategis yang memadukan semangat agraris Lampung Selatan dengan denyut nadi ekonomi Bandar Lampung.
+                </p>
+            </div>
+
+            <div class="pt-4 px-2 text-left border-t border-white/5">
+                <p class="text-[8px] text-gray-600 uppercase tracking-[0.3em] leading-relaxed">
+                    Arsip Identitas Wilayah <br> Desa Gedung Agung <br> © 2026
+                </p>
+            </div>
+        </div>`
+},
+            'tujuh-dusun': {
+    tag: 'Geografis Desa',
+    title: 'Bentang Tujuh Dusun Utama',
+    subtitle: 'Simfoni Keberagaman dalam Sekat-Sekat Wilayah',
+    img: 'https://images.unsplash.com/photo-1508873696983-2dfd5898f08b?q=80&w=2000',
+    text: `
+        <div class="flex flex-col lg:flex-row gap-4 lg:gap-8 -ml-4 lg:-ml-12">
+            <div class="lg:w-[15%] flex flex-col gap-6 border-r border-white/5 pr-4 shrink-0">
+                <div>
+                    <span class="text-[9px] text-primary uppercase tracking-[0.3em] font-bold block mb-2 underline decoration-primary/30 text-left">Struktur Wilayah</span>
+                    <div class="flex items-center gap-2 justify-start">
+                        <div class="w-7 h-7 rounded-full bg-primary/20 flex items-center justify-center text-[10px] text-primary italic font-bold border border-primary/30">7D</div>
+                        <p class="text-white text-[10px] font-medium leading-tight text-left">Kolektif Dusun</p>
+                    </div>
+                </div>
+                
+                <div class="border-t border-white/5 pt-4">
+                    <span class="text-[9px] text-gray-500 uppercase tracking-[0.3em] font-bold block mb-3 text-left">Statistik Jarak</span>
+                    <ul class="text-[9px] text-gray-400 space-y-3 font-light text-left">
+                        <li class="flex items-start gap-2"><i class="fas fa-map-signs text-primary/40 mt-0.5"></i> <span>Radius Maksimal 3 KM</span></li>
+                        <li class="flex items-start gap-2"><i class="fas fa-road text-primary/40 mt-0.5"></i> <span>Akses Lintas Desa</span></li>
+                        <li class="flex items-start gap-2"><i class="fas fa-users text-primary/40 mt-0.5"></i> <span>Multi-Etnisitas</span></li>
+                    </ul>
+                </div>
+
+                <div class="border-t border-white/5 pt-4">
+                    <span class="text-[9px] text-gray-500 uppercase tracking-[0.3em] font-bold block mb-2 text-left">Konektivitas</span>
+                    <div class="flex flex-wrap gap-1 justify-start">
+                        <span class="text-[8px] bg-white/5 px-1.5 py-0.5 rounded text-gray-500 border border-white/10 italic">#Kamtibmas</span>
+                        <span class="text-[8px] bg-white/5 px-1.5 py-0.5 rounded text-gray-500 border border-white/10 italic">#Enclave</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:w-[85%] w-full pr-2">
+                <section class="mb-16">
+                    <div class="flex items-center gap-4 mb-8">
+                        <h2 class="font-oswald text-4xl text-white uppercase tracking-tighter leading-none">
+                            Geografi Terfragmentasi <span class="text-primary italic">&</span> Persatuan
+                        </h2>
+                        <div class="h-[1px] flex-grow bg-gradient-to-r from-primary/30 to-transparent"></div>
+                    </div>
+                    
+                    <p class="text-2xl leading-relaxed text-gray-200 first-letter:text-8xl first-letter:font-bold first-letter:text-primary first-letter:mr-4 first-letter:float-left first-letter:leading-none mb-8 text-justify">
+                        Keunikan <span class="text-white font-bold underline decoration-primary/20 underline-offset-8">Gedung Agung</span> bukan hanya pada luasnya, melainkan pada tata ruangnya yang menantang. Terbagi dalam tujuh dusun, wilayah ini memiliki dinamika akses yang unik di mana beberapa dusun terpisahkan oleh batas desa lain.
+                    </p>
+                    
+                    <p class="text-gray-400 text-lg leading-loose text-justify">
+                        Dusun 1 menjadi titik terjauh dengan jarak tempuh mencapai <span class="text-white font-bold italic">3 kilometer dari Balai Desa</span>. Posisinya yang nyaris menyentuh batas kecamatan lain menjadikannya garda terdepan desa. Meskipun secara fisik terpisah oleh jarak dan desa tetangga, ikatan emosional antar warga tetap terjalin melalui koordinasi yang intensif dan kesamaan tradisi.
+                    </p>
+                </section>
+
+                <div class="my-14 group relative overflow-hidden rounded-sm border border-white/5 shadow-2xl shadow-black/50">
+                    <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=1200" class="w-full h-[450px] object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-1000" alt="Suasana Pedesaan">
+                    <div class="absolute top-4 left-4 bg-primary px-3 py-1 text-[9px] font-bold text-dark-bg uppercase tracking-widest">Peta Sosial</div>
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/95 p-8 border-l-4 border-primary ml-0">
+                        <p class="text-[13px] text-gray-300 font-medium italic mb-2">"Jarak fisik bukanlah penghalang bagi integrasi sosial yang sudah mengakar puluhan tahun."</p>
+                        <p class="text-[10px] text-primary/60 uppercase tracking-[0.4em] font-bold">Laporan Geografis Dusun</p>
+                    </div>
+                </div>
+
+                <section class="mb-16">
+                    <h2 class="font-oswald text-3xl text-white mb-8 uppercase tracking-widest flex items-center gap-4">
+                        <span class="w-8 h-[1px] bg-primary"></span> Titik Temu Ekonomi: Dusun 2
+                    </h2>
+                    <p class="text-gray-400 text-lg leading-loose text-justify mb-8">
+                        Berbeda dengan dusun lainnya, <span class="text-white font-bold uppercase tracking-tighter">Dusun 2</span> muncul sebagai pusat perputaran ekonomi yang lebih heterogen. Didominasi oleh mayoritas <span class="text-primary italic font-medium">Suku Palembang</span>, dusun ini menampilkan wajah perdagangan yang dinamis. Mulai dari grosir sembako, bengkel otomotif, hingga profesi pegawai negeri, semuanya berkelindan menciptakan denyut kehidupan yang berbeda dari dusun agraris murni.
+                    </p>
+                    <div class="bg-white/[0.02] p-10 border-l-2 border-primary/50 rounded-r-sm italic text-2xl text-gray-200 font-light leading-relaxed tracking-wide shadow-inner">
+                        "Setiap dusun di Gedung Agung memiliki 'jiwa' dan spesialisasi ekonomi masing-masing, menjadikannya satu kesatuan organisme yang mandiri."
+                    </div>
+                </section>
+
+                <section class="pb-10 pt-10 border-t border-white/5">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                        <div class="md:col-span-2">
+                             <h2 class="font-oswald text-3xl text-white mb-6 uppercase tracking-widest flex items-center gap-4 text-primary">
+                                <i class="fas fa-moon text-xl"></i> Harmoni Malam & Kehidupan Ternak
+                            </h2>
+                            <p class="text-gray-400 text-lg leading-relaxed text-justify">
+                                Kesamaan unik yang mengikat ketujuh dusun ini adalah pemanfaatan sektor peternakan, khususnya sapi, yang menjadi aset berharga hampir di setiap rumah. Selain itu, dinamika sosial paling hangat terjadi saat malam hari. Ruang-ruang publik desa dipenuhi oleh bapak-bapak yang berkumpul, menciptakan suasana yang ramai namun tetap tentram dan aman.
+                            </p>
+                        </div>
+                        <div class="flex items-center justify-center">
+                            <div class="w-full bg-primary/10 p-10 rounded-sm border border-primary/20 text-center relative overflow-hidden group">
+                                <i class="fas fa-cow text-primary/5 text-8xl absolute -right-4 -bottom-4 group-hover:rotate-45 transition-transform duration-700"></i>
+                                <span class="text-7xl font-bold text-primary font-oswald tracking-tighter block leading-none">07</span>
+                                <p class="text-[10px] text-gray-400 uppercase font-bold tracking-[0.4em] mt-4 relative z-10">Total Dusun Aktif</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    `,
+    sidebar: `
+        <div class="sticky top-32 space-y-8">
+            <div class="p-6 bg-white/[0.01] border border-white/5 rounded-sm">
+                <h4 class="text-[10px] text-primary font-bold uppercase tracking-[0.3em] mb-6 flex items-center justify-between border-b border-white/5 pb-2">
+                    <span>Mata Pencaharian</span>
+                    <i class="fas fa-briefcase animate-pulse"></i>
+                </h4>
+                <div class="space-y-5">
+                    <div>
+                        <div class="flex justify-between text-[9px] mb-2 uppercase tracking-widest">
+                            <span class="text-gray-500">Pertanian/Ternak</span>
+                            <span class="text-white">70%</span>
+                        </div>
+                        <div class="w-full h-1 bg-white/5"><div class="w-[70%] h-full bg-primary shadow-[0_0_8px_#00bfa5]"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-[9px] mb-2 uppercase tracking-widest">
+                            <span class="text-gray-500">Perdagangan/Jasa</span>
+                            <span class="text-white">30%</span>
+                        </div>
+                        <div class="w-full h-1 bg-white/5"><div class="w-[30%] h-full bg-primary/60"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-6 bg-white/[0.03] border-t-2 border-primary shadow-2xl relative">
+                <span class="text-[9px] text-primary font-bold uppercase tracking-[0.4em] block mb-3 italic">FYI: Jarak Tempuh</span>
+                <p class="text-white text-xs leading-loose text-justify font-light opacity-80">
+                    Akses menuju Dusun 1 seringkali mengharuskan warga melewati jalan utama desa tetangga, menciptakan interaksi antar-desa yang sangat harmonis di perbatasan.
+                </p>
+            </div>
+
+            <div class="pt-4 px-2 text-left">
+                <p class="text-[8px] text-gray-600 uppercase tracking-[0.3em] leading-relaxed">
+                    Sistem Integrasi Wilayah <br> Desa Gedung Agung <br> © 2026
+                </p>
+            </div>
+        </div>`
+    },
+
+  'agribisnis': {
+    tag: 'Ketahanan Pangan',
+    title: 'Ekosistem Agribisnis Terpadu',
+    subtitle: 'Manifesto Pertanian Sirkular & Kedaulatan Pangan Mandiri',
+    img: 'https://images.unsplash.com/photo-1625244724120-1fd1d34d00f6?q=80&w=2000',
+    text: `
+        <div class="flex flex-col lg:flex-row gap-4 lg:gap-8 -ml-4 lg:-ml-12">
+            <div class="lg:w-[15%] flex flex-col gap-8 border-r border-white/5 pr-4 shrink-0">
+                <div>
+                    <span class="text-[9px] text-primary uppercase tracking-[0.3em] font-bold block mb-4 border-b border-primary/20 pb-1 text-left">Kontributor</span>
+                    <div class="flex flex-col gap-3 justify-start">
+                        <div class="w-10 h-10 rounded-sm bg-white/5 flex items-center justify-center text-[12px] text-primary font-bold border border-white/10 shadow-lg">AG</div>
+                        <div>
+                            <p class="text-white text-[10px] font-bold leading-tight uppercase tracking-wider">Poktan Desa</p>
+                            <p class="text-gray-500 text-[9px] mt-1 italic font-light">Divisi Agribisnis</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-2">
+                    <span class="text-[9px] text-gray-500 uppercase tracking-[0.3em] font-bold block mb-3 text-left">Fokus Komoditas</span>
+                    <div class="flex flex-col gap-2 justify-start">
+                        <span class="text-[9px] text-gray-400 hover:text-primary transition-colors cursor-default flex items-center gap-2">
+                            <span class="w-1 h-1 bg-primary/40 rounded-full"></span> #Hortikultura
+                        </span>
+                        <span class="text-[9px] text-gray-400 hover:text-primary transition-colors cursor-default flex items-center gap-2">
+                            <span class="w-1 h-1 bg-primary/40 rounded-full"></span> #CircularFarming
+                        </span>
+                        <span class="text-[9px] text-gray-400 hover:text-primary transition-colors cursor-default flex items-center gap-2">
+                            <span class="w-1 h-1 bg-primary/40 rounded-full"></span> #Livestock
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:w-[85%] w-full pr-2">
+                <section class="mb-16">
+                    <div class="flex items-center gap-4 mb-8">
+                        <h2 class="font-oswald text-4xl text-white uppercase tracking-tighter leading-none">
+                            Rantai Nilai <span class="text-primary italic">&</span> Kemandirian Lokal
+                        </h2>
+                        <div class="h-[1px] flex-grow bg-gradient-to-r from-primary/30 to-transparent"></div>
+                    </div>
+                    
+                    <p class="text-2xl leading-relaxed text-gray-200 first-letter:text-8xl first-letter:font-bold first-letter:text-primary first-letter:mr-4 first-letter:float-left first-letter:leading-none mb-8 text-justify">
+                        Gedung Agung telah berhasil membangun sebuah <span class="text-white font-bold underline decoration-primary/20 underline-offset-8">Ekosistem Agribisnis Terpadu</span> yang mandiri. Keunikan desa ini terletak pada kelengkapan rantai pasoknya, mulai dari penyedia bibit unggul, infrastruktur irigasi yang terstruktur, hingga akses mudah terhadap alat mesin pertanian (Alsintan) dan pestisida yang komprehensif.
+                    </p>
+                    
+                    <p class="text-gray-400 text-lg leading-loose text-justify">
+                        Siklus ini ditutup dengan sistem distribusi yang efisien menuju pengepul besar, memastikan hasil panen terserap maksimal tanpa hambatan logistik. Kemandirian ini memposisikan Gedung Agung bukan sekadar desa tani, melainkan pusat logistik pangan skala kecamatan yang tangguh.
+                    </p>
+                </section>
+
+                <div class="my-14 group relative overflow-hidden rounded-sm border border-white/5 shadow-2xl">
+                    <img src="https://images.unsplash.com/photo-1592982537447-7440770cbfc9?q=80&w=1200" class="w-full h-[450px] object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-1000" alt="Pertanian Modern">
+                    <div class="absolute top-4 left-4 bg-primary px-3 py-1 text-[9px] font-bold text-dark-bg uppercase tracking-widest shadow-xl">Sentra Hortikultura</div>
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/95 p-8 border-l-4 border-primary ml-0">
+                        <p class="text-[13px] text-gray-300 font-medium italic mb-2">"Pemanfaatan lahan berkelanjutan melalui diversifikasi komoditas dari melon hingga cokelat."</p>
+                        <p class="text-[10px] text-primary/60 uppercase tracking-[0.4em] font-bold">Dokumentasi Agribisnis 2026</p>
+                    </div>
+                </div>
+
+                <section class="mb-16">
+                    <h2 class="font-oswald text-3xl text-white mb-8 uppercase tracking-widest flex items-center gap-4 text-primary">
+                        <span class="w-8 h-[1px] bg-primary"></span> Integrasi Sapi & Limbah Organik
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
+                        <div class="md:col-span-3">
+                            <p class="text-gray-400 text-lg leading-loose text-justify">
+                                Inovasi paling menonjol adalah penerapan <span class="text-white font-medium italic">Circular Farming</span>. Limbah jagung dan singkong tidak lagi dibuang, melainkan diolah kembali menjadi pakan ternak. Sebaliknya, peran sapi di sini sangat vital; mulai dari moda transportasi ke ladang hingga pemanfaatan <span class="text-white font-bold border-b border-primary/40">urin sapi sebagai pupuk cair alami</span> yang mampu mengembalikan unsur hara tanah tanpa ketergantungan penuh pada pupuk kimia.
+                            </p>
+                        </div>
+                        <div class="md:col-span-2 bg-white/[0.02] p-8 border border-white/5 rounded-sm flex flex-col justify-center">
+                            <span class="text-xs text-primary font-bold uppercase tracking-widest mb-2 italic">Zero Waste Concept</span>
+                            <p class="text-sm text-gray-300 leading-relaxed font-light">"Urin dan kotoran ternak adalah emas cair bagi petani Gedung Agung, menekan biaya produksi hingga 30%."</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="pb-10 pt-10 border-t border-white/5">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                        <div class="md:col-span-2">
+                             <h2 class="font-oswald text-3xl text-white mb-6 uppercase tracking-widest flex items-center gap-4">
+                                <i class="fas fa-certificate text-primary text-xl"></i> Komoditas Premium
+                            </h2>
+                            <p class="text-gray-400 text-lg leading-relaxed text-justify">
+                                Selain tanaman pangan pokok, Gedung Agung telah tersohor dengan budidaya <span class="text-white font-bold uppercase tracking-tighter">Melon dan Alpukat</span> kualitas premium. Diversifikasi ini merambah hingga skala pekarangan rumah, di mana warga menanam sayur-sayuran, cabai, hingga cokelat (kakao). Skema ini menciptakan jaring pengaman ekonomi berlapis bagi rumah tangga desa.
+                            </p>
+                        </div>
+                        
+                       <div class="flex items-center justify-center h-full">
+    <div class="w-full bg-primary/10 rounded-sm border border-primary/20 relative overflow-hidden group min-h-[250px] flex flex-col items-center justify-center p-6">
+        <i class="fas fa-seedling text-primary/5 text-7xl absolute -right-2 -bottom-2 group-hover:rotate-12 transition-transform duration-700"></i>
+        
+        <div class="relative z-10 flex flex-col items-center justify-center text-center">
+            <span class="text-4xl font-bold text-primary font-oswald tracking-[0.1em] block uppercase leading-tight mb-2">
+                PREMIUM
+            </span>
+            
+            <div class="h-[2px] w-10 bg-primary/40 my-3"></div>
+            
+            <p class="text-[10px] text-gray-400 uppercase font-bold tracking-[0.5em] leading-relaxed">
+                STANDAR<br>KOMODITAS
+            </p>
+        </div>
+    </div>
+</div>
+                </section>
+            </div>
+        </div>
+    `,
+    sidebar: `
+        <div class="sticky top-32 space-y-8">
+            <div class="p-6 bg-white/[0.01] border border-white/5 rounded-sm">
+                <h4 class="text-[10px] text-primary font-bold uppercase tracking-[0.3em] mb-6 flex items-center justify-between border-b border-white/5 pb-2 text-left">
+                    <span>Agri-Metrics</span>
+                    <i class="fas fa-leaf"></i>
+                </h4>
+                <div class="space-y-5">
+                    <div>
+                        <div class="flex justify-between text-[9px] mb-2 uppercase tracking-widest">
+                            <span class="text-gray-500">Sirkulasi Limbah</span>
+                            <span class="text-white">95% Terolah</span>
+                        </div>
+                        <div class="w-full h-1 bg-white/5"><div class="w-[95%] h-full bg-primary shadow-[0_0_8px_#00bfa5]"></div></div>
+                    </div>
+                    <div>
+                        <div class="flex justify-between text-[9px] mb-2 uppercase tracking-widest">
+                            <span class="text-gray-500">Kemandirian Pupuk</span>
+                            <span class="text-white">60% Organik</span>
+                        </div>
+                        <div class="w-full h-1 bg-white/5"><div class="w-[60%] h-full bg-primary/60"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-6 bg-white/[0.03] border-t-2 border-primary shadow-2xl relative">
+                <span class="text-[9px] text-primary font-bold uppercase tracking-[0.4em] block mb-3 italic text-left">Info Smart Farming</span>
+                <p class="text-white text-xs leading-loose text-justify font-light opacity-80">
+                    Penggunaan urin sapi yang difermentasi (bio-urine) terbukti secara riset meningkatkan daya tahan tanaman melon terhadap serangan hama jamur di tanah Lampung Selatan.
+                </p>
+            </div>
+
+            <div class="pt-4 px-2 text-left border-t border-white/5">
+                <p class="text-[8px] text-gray-600 uppercase tracking-[0.3em] leading-relaxed">
+                    Ecosystem Data Report <br> Desa Gedung Agung <br> © 2026
+                </p>
+            </div>
+        </div>`
+}
+};
+
+        // Fungsi Load Konten berdasarkan Parameter URL (?page=...)
+        function loadPage() {
+            const params = new URLSearchParams(window.location.search);
+            const page = params.get('page') || 'identitas'; // Default identitas jika kosong
+            const data = dataKonten[page];
+
+            if (data) {
+                document.getElementById('hero-img').src = data.img;
+                document.getElementById('top-tag').innerText = data.tag;
+                document.getElementById('main-title').innerText = data.title;
+                document.getElementById('sub-title').innerHTML = `<i class="fas fa-bookmark text-primary text-xl"></i> ` + data.subtitle;
+                document.getElementById('content-text').innerHTML = data.text;
+                document.getElementById('sidebar-info').innerHTML = data.sidebar;
+                document.title = data.title + " | Desa Gedung Agung";
+            }
+        }
+
+        window.onload = loadPage;
+    </script>
+</body>
+</html>

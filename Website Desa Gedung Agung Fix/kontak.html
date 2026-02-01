@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hubungi Kami | Desa Gedung Agung</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 'oswald': ['Oswald', 'sans-serif'], 'roboto': ['Roboto', 'sans-serif'] },
+                    colors: { 'primary': '#00bfa5', 'dark-bg': '#0f172a' }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Roboto', sans-serif; background-color: #0f172a; color: #e2e8f0; overflow-x: hidden; }
+        .glass-card { background: rgba(30, 41, 59, 0.6); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); transition: all 0.4s ease; }
+        .glass-card:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
+        
+        .input-dark {
+            background-color: rgba(30, 41, 59, 0.5); 
+            border: 1px solid rgba(255,255,255,0.1); 
+            color: white;
+            transition: all 0.3s;
+        }
+        .input-dark:focus { 
+            border-color: #00bfa5; 
+            outline: none; 
+            background-color: rgba(30, 41, 59, 0.8);
+            box-shadow: 0 0 0 3px rgba(0, 191, 165, 0.2); 
+        }
+        
+        .nav-link:hover { color: #00bfa5; }
+    </style>
+</head>
+<body class="bg-dark-bg">
+
+    <nav class="fixed top-0 left-0 w-full z-50 px-6 md:px-12 lg:px-20 py-4 transition-all duration-300 bg-dark-bg/30 backdrop-blur-md border-b border-white/10">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-primary/20 backdrop-blur rounded-full flex items-center justify-center border border-primary/30">
+                        <i class="fas fa-mountain text-primary"></i>
+                    </div>
+                    <span class="text-white text-lg font-bold tracking-wide uppercase font-oswald">Gedung Agung</span>
+                </div>
+                
+                <ul class="hidden lg:flex items-center space-x-8 text-white text-xs font-bold tracking-widest uppercase">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="profil.html" class="nav-link">Profil</a></li>
+                    <li><a href="geografis.html" class="nav-link">Peta</a></li>
+                    <li><a href="galeri.html" class="nav-link">Galeri</a></li>
+                    <li><a href="explore.html" class="nav-link">Explore</a></li>
+                    <li><a href="kontak.html" class="nav-link text-primary active">Kontak</a></li>
+                </ul>
+
+                <button class="lg:hidden text-white hover:text-primary transition">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </nav>
+
+    <div class="relative pt-40 pb-16 px-6 text-center bg-gradient-to-b from-slate-900 to-dark-bg">
+        <div data-aos="zoom-in">
+            <h1 class="font-oswald text-5xl md:text-6xl font-bold text-white mb-4 tracking-wide">HUBUNGI KAMI</h1>
+            <div class="w-24 h-1.5 bg-primary mx-auto rounded-full mb-6"></div>
+            <p class="text-gray-300 max-w-xl mx-auto font-light text-lg">
+                Siap melayani pertanyaan, pengaduan, dan kebutuhan administrasi warga desa.
+            </p>
+        </div>
+    </div>
+
+    <main class="container mx-auto px-6 pb-20">
+        <div class="grid lg:grid-cols-3 gap-8">
+            
+            <div class="lg:col-span-1 space-y-6">
+                <div class="glass-card rounded-2xl p-8 border-l-4 border-primary group" data-aos="fade-right">
+                    <div class="flex items-start">
+                        <div class="bg-primary/20 p-4 rounded-xl mr-5 text-primary group-hover:scale-110 transition duration-300">
+                            <i class="fas fa-map-marker-alt text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-oswald font-bold text-white text-xl mb-2">Kantor Desa</h3>
+                            <p class="text-gray-400 text-sm leading-relaxed">
+                                Jl. Raya Gedung Agung No. 01<br>
+                                Kec. Jati Agung, Kab. Lampung Selatan<br>
+                                Provinsi Lampung, 35365
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-8 border-l-4 border-yellow-500 group" data-aos="fade-right" data-aos-delay="100">
+                    <div class="flex items-start">
+                        <div class="bg-yellow-500/20 p-4 rounded-xl mr-5 text-yellow-500 group-hover:scale-110 transition duration-300">
+                            <i class="fas fa-clock text-xl"></i>
+                        </div>
+                        <div class="w-full">
+                            <h3 class="font-oswald font-bold text-white text-xl mb-2">Jam Pelayanan</h3>
+                            <ul class="text-gray-400 text-sm space-y-2">
+                                <li class="flex justify-between border-b border-gray-700 pb-1">
+                                    <span>Senin - Kamis</span> <span class="text-white font-medium">08.00 - 15.00</span>
+                                </li>
+                                <li class="flex justify-between border-b border-gray-700 pb-1">
+                                    <span>Jumat</span> <span class="text-white font-medium">08.00 - 11.00</span>
+                                </li>
+                                <li class="flex justify-between">
+                                    <span>Sabtu - Minggu</span> <span class="text-red-400 font-medium">Libur</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-card rounded-2xl p-8 border-l-4 border-blue-500 group" data-aos="fade-right" data-aos-delay="200">
+                    <div class="flex items-start">
+                        <div class="bg-blue-500/20 p-4 rounded-xl mr-5 text-blue-500 group-hover:scale-110 transition duration-300">
+                            <i class="fas fa-paper-plane text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-oswald font-bold text-white text-xl mb-2">Kontak Digital</h3>
+                            <p class="text-gray-400 text-sm mb-3">Kirim surel resmi ke:</p>
+                            <a href="mailto:admin@gedungagung.desa.id" class="text-primary hover:text-white transition font-medium">admin@gedungagung.desa.id</a>
+                            
+                            <div class="mt-4 flex space-x-3">
+                                <a href="#" class="w-8 h-8 rounded bg-gray-700 flex items-center justify-center hover:bg-blue-600 hover:text-white transition"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" class="w-8 h-8 rounded bg-gray-700 flex items-center justify-center hover:bg-pink-600 hover:text-white transition"><i class="fab fa-instagram"></i></a>
+                                <a href="#" class="w-8 h-8 rounded bg-gray-700 flex items-center justify-center hover:bg-red-600 hover:text-white transition"><i class="fab fa-youtube"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-2" data-aos="fade-left">
+                <div class="glass-card rounded-2xl p-8 md:p-10">
+                    <div class="flex items-center justify-between border-b border-gray-700 pb-6 mb-8">
+                        <div>
+                            <h2 class="text-3xl font-oswald font-bold text-white flex items-center">
+                                <i class="fab fa-whatsapp text-green-500 mr-3 text-4xl"></i> Layanan Warga
+                            </h2>
+                            <p class="text-gray-400 text-sm mt-2">Terhubung langsung ke WhatsApp Admin Desa.</p>
+                        </div>
+                        <div class="hidden md:block">
+                            <span class="animate-pulse w-3 h-3 bg-green-500 rounded-full inline-block mr-2"></span>
+                            <span class="text-green-500 text-sm font-bold uppercase">Online</span>
+                        </div>
+                    </div>
+
+                    <form onsubmit="kirimKeWhatsApp(event)" class="grid md:grid-cols-2 gap-8">
+                        <div class="col-span-2 md:col-span-1 group">
+                            <label class="block text-gray-300 text-xs font-bold uppercase tracking-wider mb-2 group-focus-within:text-primary transition">Nama Lengkap</label>
+                            <input type="text" id="wa-nama" placeholder="Contoh: Budi Santoso" class="w-full px-5 py-4 rounded-xl input-dark" required>
+                        </div>
+                        
+                        <div class="col-span-2 md:col-span-1 group">
+                            <label class="block text-gray-300 text-xs font-bold uppercase tracking-wider mb-2 group-focus-within:text-primary transition">Dusun / Asal</label>
+                            <input type="text" id="wa-dusun" placeholder="Contoh: Dusun 1" class="w-full px-5 py-4 rounded-xl input-dark">
+                        </div>
+
+                        <div class="col-span-2 group">
+                            <label class="block text-gray-300 text-xs font-bold uppercase tracking-wider mb-2 group-focus-within:text-primary transition">Keperluan</label>
+                            <div class="relative">
+                                <select id="wa-topik" class="w-full px-5 py-4 rounded-xl input-dark appearance-none cursor-pointer">
+                                    <option class="bg-slate-800" value="Pertanyaan Umum">📝 Pertanyaan Umum</option>
+                                    <option class="bg-slate-800" value="Pengurusan Surat">📄 Pengurusan Surat</option>
+                                    <option class="bg-slate-800" value="Laporan / Pengaduan">🚨 Laporan / Pengaduan</option>
+                                    <option class="bg-slate-800" value="Usulan Pembangunan">🏗️ Usulan Pembangunan</option>
+                                </select>
+                                <div class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-gray-400">
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-span-2 group">
+                            <label class="block text-gray-300 text-xs font-bold uppercase tracking-wider mb-2 group-focus-within:text-primary transition">Isi Pesan</label>
+                            <textarea id="wa-pesan" rows="5" placeholder="Tuliskan detail keperluan Anda di sini..." class="w-full px-5 py-4 rounded-xl input-dark resize-none" required></textarea>
+                        </div>
+
+                        <div class="col-span-2 mt-2">
+                            <button type="submit" class="w-full bg-gradient-to-r from-primary to-teal-600 hover:from-teal-400 hover:to-teal-500 text-dark-bg font-bold text-lg py-4 rounded-xl shadow-lg hover:shadow-primary/40 transition transform hover:-translate-y-1 flex justify-center items-center group">
+                                <span class="mr-3">Kirim Pesan Sekarang</span>
+                                <i class="fas fa-paper-plane group-hover:translate-x-1 transition"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 pt-16 border-t border-gray-800">
+        <div class="container mx-auto px-6 md:px-12 lg:px-20 mb-12">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 bg-primary/20 rounded-full flex items-center justify-center text-primary"><i class="fas fa-mountain"></i></div>
+                        <span class="text-white text-xl font-bold font-oswald uppercase">Gedung Agung</span>
+                    </div>
+                    <p class="text-gray-400 max-w-md text-sm">Membangun desa dengan inovasi digital dan kearifan lokal.</p>
+                </div>
+                <div class="text-gray-500 text-sm md:text-right">
+                     © 2025 KKN Desa Gedung Agung.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ once: true, duration: 800 });
+
+        function kirimKeWhatsApp(e) {
+            e.preventDefault();
+            const nama = document.getElementById('wa-nama').value;
+            const dusun = document.getElementById('wa-dusun').value || '-';
+            const topik = document.getElementById('wa-topik').value;
+            const pesan = document.getElementById('wa-pesan').value;
+            const nomorAdmin = "6282268051723"; 
+
+            const textWhatsApp = `*LAYANAN DESA GEDUNG AGUNG*\n\nHalo Admin, saya ingin menyampaikan:\n\n👤 *Nama:* ${nama}\n🏠 *Asal:* ${dusun}\n📌 *Keperluan:* ${topik}\n\n*Isi Pesan:*\n"${pesan}"\n\nTerima kasih.`;
+            
+            window.open(`https://wa.me/${nomorAdmin}?text=${encodeURIComponent(textWhatsApp)}`, '_blank');
+        }
+    </script>
+</body>
+</html>
