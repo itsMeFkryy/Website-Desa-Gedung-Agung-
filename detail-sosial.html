@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Sosial | Desa Gedung Agung</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 'oswald': ['Oswald', 'sans-serif'], 'roboto': ['Roboto', 'sans-serif'] },
+                    colors: { 'primary': '#00bfa5', 'dark-bg': '#0f172a' }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { font-family: 'Roboto', sans-serif; background-color: #0f172a; color: #e2e8f0; }
+        .content-area p { margin-bottom: 1.8rem; line-height: 1.8; color: #cbd5e1; text-align: justify; font-size: 1.1rem; }
+        .glass-card { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); }
+        .accent-text { color: #00bfa5; font-weight: 600; }
+        @keyframes subtle-zoom { from { transform: scale(1); } to { transform: scale(1.05); } }
+        .hero-zoom { animation: subtle-zoom 10s infinite alternate ease-in-out; }
+        
+        .nav-link { position: relative; padding-bottom: 0.5rem; transition: color 0.3s ease; }
+        .nav-link:hover { color: #00bfa5; }
+        .nav-link::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: #00bfa5; transition: width 0.3s ease; }
+        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+
+        #mobileMenu { transition: transform 0.3s ease-in-out; }
+        .menu-open { transform: translateX(0) !important; }
+    </style>
+</head>
+<body>
+
+    <nav class="fixed top-0 left-0 w-full z-50 px-6 md:px-12 lg:px-20 py-4 transition-all duration-300 bg-dark-bg/30 backdrop-blur-md border-b border-white/10">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <img src="img/logolamsell.png" alt="Logo Desa" class="h-10 md:h-12 w-auto object-contain drop-shadow-md">
+                <span class="text-white text-lg font-bold tracking-wide uppercase font-oswald">Gedung Agung</span>
+            </div>
+            
+            <ul class="hidden lg:flex items-center space-x-8 text-white text-xs font-bold tracking-widest uppercase">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="profil.html" class="nav-link">Profil</a></li>
+                <li><a href="geografis.html" class="nav-link">Peta</a></li>
+                <li><a href="galeri.html" class="nav-link">Galeri</a></li>
+                <li><a href="explore.html" class="nav-link text-primary active">Explore</a></li>
+                <li><a href="kontak.html" class="nav-link">Kontak</a></li>
+            </ul>
+
+            <button id="hamburgerBtn" class="lg:hidden text-white text-2xl focus:outline-none hover:text-primary transition">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <div id="mobileMenu" class="fixed inset-0 z-[60] bg-dark-bg/98 backdrop-blur-xl transform translate-x-full lg:hidden flex flex-col items-center justify-center space-y-8">
+    <button id="closeMenuBtn" class="absolute top-6 right-6 text-white text-3xl hover:text-primary"><i class="fas fa-times"></i></button>
+    
+    <a href="index.html" class="text-xl font-oswald text-white hover:text-primary">HOME</a>
+    <a href="profil.html" class="text-xl font-oswald text-white hover:text-primary">PROFIL</a>
+    <a href="explore.html" class="text-xl font-oswald text-white hover:text-primary">EKSPLOR</a>
+    <a href="geografis.html" class="text-xl font-oswald text-white hover:text-primary">PETA</a>
+    <a href="galeri.html" class="text-xl font-oswald text-white hover:text-primary">GALERI</a>
+    <a href="kontak.html" class="text-xl font-oswald text-white hover:text-primary">KONTAK</a>
+    </div>
+
+    <a href="explore.html" class="fixed bottom-8 right-8 z-40 flex items-center gap-3 px-5 py-2.5 bg-dark-bg/90 backdrop-blur-md border border-primary/30 text-primary rounded-full hover:bg-primary hover:text-dark-bg transition-all duration-300 group shadow-lg">
+        <i class="fas fa-arrow-left"></i>
+        <span class="text-xs font-bold uppercase tracking-widest">Kembali</span>
+    </a>
+
+    <div class="relative h-[60vh] w-full overflow-hidden">
+        <img id="hero-img" src="" class="w-full h-full object-cover hero-zoom" alt="Hero">
+        <div class="absolute inset-0 bg-gradient-to-t from-[#0f172a] via-[#0f172a]/40 to-transparent"></div>
+        <div class="absolute bottom-0 left-0 w-full p-8 md:p-20">
+            <div class="max-w-4xl text-left">
+                <span id="top-tag" class="text-primary font-bold uppercase tracking-[0.3em] text-xs mb-4 block"></span>
+                <h1 id="main-title" class="font-oswald text-5xl md:text-7xl font-bold text-white uppercase leading-tight mb-4"></h1>
+                <p id="sub-title" class="text-gray-300 text-lg mb-6 max-w-2xl"></p>
+                <div class="w-24 h-1.5 bg-primary rounded-full shadow-[0_0_15px_rgba(0,191,165,0.6)]"></div>
+            </div>
+        </div>
+    </div>
+
+    <main class="max-w-7xl mx-auto px-6 py-20 grid grid-cols-1 lg:grid-cols-3 gap-16">
+        <div class="lg:col-span-2 content-area" id="main-content-render">
+            </div>
+
+        <div class="space-y-8" id="sidebar-render">
+            </div>
+    </main>
+
+    <footer class="bg-gray-900 pt-16 border-t border-gray-800">
+        <div class="container mx-auto px-6 md:px-12 lg:px-20 mb-12">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <img src="img/logolamsell.png" alt="Logo Desa" class="h-10 md:h-12 w-auto object-contain drop-shadow-md">
+                        <span class="text-white text-lg font-bold tracking-wide uppercase font-oswald">Gedung Agung</span>
+                    </div>
+                    <p class="text-gray-400 max-w-md text-sm">
+                        Membangun desa dengan inovasi digital dan kearifan lokal. Mari bersinergi untuk kemajuan bersama.
+                    </p>
+                </div>
+                
+                <div class="flex flex-col md:flex-row md:justify-end md:items-center space-y-4 md:space-y-0 md:space-x-6">
+                    <div class="text-gray-400 text-sm">
+                        <div class="flex items-center mb-2 md:justify-end"><i class="fas fa-map-marker-alt w-6 text-primary"></i> Kec. Jati Agung, Lampung Selatan</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const dataKonten = {
+            'gema-malam': {
+                tag: 'Religiusitas',
+                title: 'Gema Malam: Simfoni Spiritual Desa',
+                subtitle: 'Penguatan Karakter Komunal Melalui Tradisi Religi',
+                img: 'img/pengajian.jpg',
+                text: `
+                    <div class="flex flex-col lg:flex-row gap-4 lg:gap-8 -ml-4 lg:-ml-12">
+                        <div class="lg:w-[15%] flex flex-col gap-8 border-r border-white/5 pr-4 shrink-0">
+                            <div class="mt-2 text-left">
+                                <span class="text-[9px] text-gray-500 uppercase tracking-[0.3em] font-bold block mb-3">Fokus Spiritual</span>
+                                <div class="flex flex-col gap-2">
+                                    <span class="text-[9px] text-gray-400 hover:text-primary transition-colors cursor-default flex items-center gap-2">
+                                        <span class="w-1 h-1 bg-primary/40 rounded-full"></span> #Pengajian
+                                    </span>
+                                    <span class="text-[9px] text-gray-400 hover:text-primary transition-colors cursor-default flex items-center gap-2">
+                                        <span class="w-1 h-1 bg-primary/40 rounded-full"></span> #MalamJumat
+                                    </span>
+                                    <span class="text-[9px] text-gray-400 hover:text-primary transition-colors cursor-default flex items-center gap-2">
+                                        <span class="w-1 h-1 bg-primary/40 rounded-full"></span> #Irmasyawarah
+                                    </span>
+                                    <span class="text-[9px] text-gray-400 hover:text-primary transition-colors cursor-default flex items-center gap-2">
+                                        <span class="w-1 h-1 bg-primary/40 rounded-full"></span> #Solidaritas
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lg:w-[85%] w-full pr-2">
+                            <section class="mb-16">
+                                <div class="flex items-center gap-4 mb-8 text-left">
+                                    <h2 class="font-oswald text-4xl text-white uppercase tracking-tighter leading-none">
+                                        Harmoni <span class="text-primary italic">&</span> Iman Kolektif
+                                    </h2>
+                                    <div class="h-[1px] flex-grow bg-gradient-to-r from-primary/30 to-transparent"></div>
+                                </div>
+                                
+                                <p class="text-2xl leading-relaxed text-gray-200 first-letter:text-8xl first-letter:font-bold first-letter:text-primary first-letter:mr-4 first-letter:float-left first-letter:leading-none mb-8 text-justify">
+                                    Gema Malam bukan sekadar rutinitas ibadah, melainkan ruh yang menghidupkan suasana spiritual di Desa Gedung Agung. Setiap malam tertentu, terutama malam Jumat, gema lantunan doa menjadi perekat sosial yang menyatukan hati warga dalam satu kekerabatan yang kokoh. Tradisi ini telah berlangsung selama puluhan tahun dan menjadi bagian integral dari identitas desa.
+                                </p>
+                                
+                                <p class="text-gray-400 text-lg leading-loose mb-8 text-justify">
+                                    Pelaksanaan Gema Malam melibatkan seluruh lapisan masyarakat, dari anak-anak hingga lansia. Di setiap dusun, pengajian dilakukan secara bergilir untuk memastikan pemerataan nilai spiritual dan partisipasi aktif seluruh warga. Melalui aktivitas ini, kegiatan keagamaan tidak hanya menjadi fasilitas vertikal dengan Tuhan, tetapi juga memperkuat ikatan horizontal antarwarga.
+                                </p>
+
+                                <p class="text-gray-400 text-lg leading-loose text-justify">
+                                    Kegiatan ini menjadi wadah musyawarah informal di mana warga saling berbagi keluh kesah, memberikan nasihat, dan memperkuat solidaritas. Dampaknya terasa pada rendahnya tingkat konflik sosial karena fondasi moralitas yang terus dipupuk setiap minggunya. Nilai-nilai kesabaran, kerendahan hati, dan tolong-menolong terinternalisasi dalam kehidupan sehari-hari masyarakat melalui mekanisme ini.
+                                </p>
+                            </section>
+
+                            <div class="my-14 group relative overflow-hidden rounded-sm border border-white/5 shadow-2xl">
+                                <img src="img/toleransi.jpeg" class="w-full h-[450px] object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-1000" alt="Gema Malam">
+                                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/95 p-8 border-l-4 border-primary ml-0 text-left">
+                                    <p class="text-[13px] text-gray-300 font-medium italic mb-2 tracking-wide">"Saat malam tiba, gema doa menyatukan hati ribuan jiwa dalam satu lantunan spiritual yang damai."</p>
+                                    <p class="text-[10px] text-primary/60 uppercase tracking-[0.4em] font-bold">Laporan Kehidupan Sosial 2026</p>
+                                </div>
+                            </div>
+
+                            <section class="mb-16 text-justify">
+                                <h2 class="font-oswald text-3xl text-white mb-8 uppercase tracking-widest flex items-center gap-4 text-primary text-left">
+                                    <span class="w-8 h-[1px] bg-primary"></span> Dampak Sosial Jangka Panjang
+                                </h2>
+                                <p class="text-gray-400 text-lg leading-loose mb-8">
+                                    Penelitian sosial menunjukkan bahwa partisipasi aktif dalam Gema Malam meningkatkan kohesi sosial desa hingga 97 persen. Warga yang secara konsisten menghadiri pengajian menunjukkan tingkat kepercayaan interpersonal yang lebih tinggi, sikap saling membantu yang lebih kuat, dan ketahanan menghadapi konflik yang lebih baik.
+                                </p>
+                                <p class="text-gray-400 text-lg leading-loose mb-12">
+                                    Selain itu, nilai-nilai spiritual yang ditanamkan melalui pengajian menjadi fondasi etika bisnis warga. Pedagang dan petani yang terlibat aktif dalam Gema Malam menunjukkan praktik perdagangan yang lebih adil, kejujuran dalam transaksi, dan kesediaan memberikan harga terjangkau untuk warga yang sedang kesusahan. Ini menciptakan ekonomi lokal yang lebih inklusif dan berkelanjutan.
+                                </p>
+
+                                <div class="flex justify-center w-full py-10">
+                                    <div class="w-full max-w-xl bg-white/[0.02] p-16 rounded-sm border border-white/5 text-center relative overflow-hidden flex flex-col items-center justify-center min-h-[400px]">
+                                        <i class="fas fa-moon text-primary/5 text-[220px] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"></i>
+                                        
+                                        <span class="text-[130px] font-bold text-primary font-oswald tracking-tighter block leading-none relative z-10">97%</span>
+                                        
+                                        <div class="relative z-10 mt-4">
+                                            <p class="text-sm text-white font-bold uppercase tracking-[0.8em] mb-6">KOHESI SOSIAL</p>
+                                            <div class="h-[1px] w-24 bg-primary/40 mx-auto mb-6"></div>
+                                            <p class="text-gray-400 text-sm leading-relaxed max-w-xs mx-auto italic font-light">
+                                                "Tingkat kepercayaan dan solidaritas komunal yang terukur melalui partisipasi konsisten dalam kegiatan spiritual tahunan."
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <p class="text-gray-400 text-lg leading-loose text-justify">
+                                    Pengakuan formal terhadap Gema Malam telah diberikan melalui penetapannya sebagai warisan budaya lokal yang perlu dilestarikan. Pemerintah desa mengalokasikan anggaran khusus untuk mendukung kelancaran program ini, termasuk penyediaan tempat ibadah yang layak dan fasilitator pengajian berkompeten.
+                                </p>
+                            </section>
+                        </div>
+                    </div>`,
+                sidebar: `<div class="p-6 bg-white/[0.03] border-l-2 border-primary"><span class="text-primary font-bold text-[10px] uppercase tracking-widest block mb-2 italic">Agenda Rutin</span><p class="text-white text-xs leading-loose opacity-80">Dilaksanakan setiap Malam Jumat di berbagai lokasi dusun. Tahun ini telah mencapai 52 kali pengajian dengan rata-rata partisipasi 250+ jiwa per acara. Fasilitator: Tokoh Agama & Pemimpin Formal.</p></div>`
+            },
+            'musyawarah-balai': {
+                tag: 'Demokrasi Desa',
+                title: 'Musyawarah Balai: Suara Kolektif Warga',
+                subtitle: 'Sistem Pengambilan Keputusan Tertinggi di Tingkat Komunal',
+                img: 'img/musyawarah2.jpg',
+                text: `
+                    <div class="flex flex-col lg:flex-row gap-4 lg:gap-8 -ml-4 lg:-ml-12">
+                        <div class="lg:w-[15%] flex flex-col gap-8 border-r border-white/5 pr-4 shrink-0">
+                            <div class="mt-2 text-left">
+                                <span class="text-[9px] text-gray-500 uppercase tracking-[0.3em] font-bold block mb-3">Pilar Demokrasi</span>
+                                <div class="flex flex-col gap-2">
+                                    <span class="text-[9px] text-gray-400 hover:text-primary transition-colors cursor-default flex items-center gap-2">
+                                        <span class="w-1 h-1 bg-primary/40 rounded-full"></span> #Mufakat
+                                    </span>
+                                    <span class="text-[9px] text-gray-400 hover:text-primary transition-colors cursor-default flex items-center gap-2">
+                                        <span class="w-1 h-1 bg-primary/40 rounded-full"></span> #Transparansi
+                                    </span>
+                                    <span class="text-[9px] text-gray-400 hover:text-primary transition-colors cursor-default flex items-center gap-2">
+                                        <span class="w-1 h-1 bg-primary/40 rounded-full"></span> #Akuntabilitas
+                                    </span>
+                                    <span class="text-[9px] text-gray-400 hover:text-primary transition-colors cursor-default flex items-center gap-2">
+                                        <span class="w-1 h-1 bg-primary/40 rounded-full"></span> #Inklusi
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lg:w-[85%] w-full pr-2">
+                            <section class="mb-16">
+                                <div class="flex items-center gap-4 mb-8 text-left">
+                                    <h2 class="font-oswald text-4xl text-white uppercase tracking-tighter leading-none">
+                                        Kedaulatan <span class="text-primary italic">&</span> Warga Partisipatif
+                                    </h2>
+                                    <div class="h-[1px] flex-grow bg-gradient-to-r from-primary/30 to-transparent"></div>
+                                </div>
+                                
+                                <p class="text-2xl leading-relaxed text-gray-200 first-letter:text-8xl first-letter:font-bold first-letter:text-primary first-letter:mr-4 first-letter:float-left first-letter:leading-none mb-8 text-justify">
+                                    Musyawarah Balai adalah jantung demokrasi di Gedung Agung. Di sini, tidak ada suara yang terlalu kecil untuk didengar. Setiap kebijakan strategis desa lahir dari meja perundingan yang melibatkan seluruh elemen masyarakat, dari tani hingga pedagang, dari pemuda hingga orang tua.
+                                </p>
+                                
+                                <p class="text-gray-400 text-lg leading-loose mb-8 text-justify">
+                                    Mekanisme pengambilan keputusan di Gedung Agung menganut prinsip musyawarah untuk mufakat, mengikuti tradisi demokrasi lokal yang telah berkembang selama berabad-abad. Sebelum keputusan final diambil, dilakukan serangkaian dialog terbuka di tingkat dusun untuk menghimpun aspirasi grassroots. Aspirasi tersebut kemudian dibawa ke forum Musyawarah Balai untuk dimusyawarahkan lebih lanjut.
+                                </p>
+
+                                <p class="text-gray-400 text-lg leading-loose text-justify">
+                                    Melalui transparansi penuh mengenai anggaran dan perencanaan pembangunan, warga memiliki kontrol penuh terhadap arah kemajuan desa. Laporan keuangan desa dibacakan secara terbuka, dan setiap pos anggaran dijelaskan secara detail. Hal ini menciptakan rasa memiliki (sense of belonging) yang tinggi terhadap setiap fasilitas publik yang dibangun, karena masyarakat telah terlibat sejak tahap perencanaan.
+                                </p>
+                            </section>
+
+                            <section class="mb-16 text-justify">
+                                <h2 class="font-oswald text-3xl text-white mb-8 uppercase tracking-widest flex items-center gap-4 text-primary text-left">
+                                    <span class="w-8 h-[1px] bg-primary"></span> Hasil-Hasil Kebijakan Signifikan
+                                </h2>
+                                <p class="text-gray-400 text-lg leading-loose mb-8">
+                                    Dari Forum Musyawarah Balai, telah dihasilkan sejumlah keputusan strategis yang mengubah wajah desa. Keputusan untuk mengembangkan sektor pertanian organik, misalnya, lahir dari aspirasi petani muda yang ingin meningkatkan nilai jual produk mereka. Keputusan untuk membangun fasilitas penyimpanan hasil panen kolektif adalah respons atas kebutuhan yang diidentifikasi bersama masyarakat.
+                                </p>
+                                <p class="text-gray-400 text-lg leading-loose mb-12">
+                                    Program bantuan kesehatan gratis untuk lansia, inisiatif pelatihan keterampilan bagi pemuda, dan pembangunan jaringan irigasi modern adalah beberapa contoh konkret dari keputusan yang lahir dari mekanisme musyawarah ini. Setiap keputusan didukung oleh konsensus luas dan pemahaman bersama tentang alasan-alasan di baliknya.
+                                </p>
+
+                                <div class="flex justify-center w-full py-10">
+                                    <div class="w-full max-w-xl bg-white/[0.02] p-16 rounded-sm border border-white/5 text-center relative overflow-hidden flex flex-col items-center justify-center min-h-[400px]">
+                                        <i class="fas fa-hand-holding-heart text-primary/5 text-[220px] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"></i>
+                                        
+                                        <span class="text-[130px] font-bold text-primary font-oswald tracking-tighter block leading-none relative z-10">5</span>
+                                        
+                                        <div class="relative z-10 mt-4">
+                                            <p class="text-sm text-white font-bold uppercase tracking-[0.8em] mb-6">DUSUN TERLIBAT</p>
+                                            <div class="h-[1px] w-24 bg-primary/40 mx-auto mb-6"></div>
+                                            <p class="text-gray-400 text-sm leading-relaxed max-w-xs mx-auto italic font-light">
+                                                "Setiap dusun memiliki representasi di Balai untuk memastikan aspirasi grassroots terakomodasi dengan baik dalam kebijakan desa."
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <p class="text-gray-400 text-lg leading-loose text-justify">
+                                    Sistem ini juga memiliki mekanisme check and balance yang kuat. Keputusan Musyawarah Balai dapat ditinjau kembali jika ditemukan bukti bahwa implementasinya menyimpang dari konsensus awal atau merugikan kelompok tertentu. Transparansi dan akuntabilitas ini telah membangun kepercayaan masyarakat terhadap institusi pemerintahan lokal, sebagaimana terefleksi dalam tingkat kepuasan warga terhadap pemerintahan desa yang mencapai 94 persen.
+                                </p>
+                            </section>
+                        </div>
+                    </div>`,
+                sidebar: `<div class="p-6 bg-white/[0.03] border-l-2 border-primary"><span class="text-primary font-bold text-[10px] uppercase tracking-widest block mb-2 italic">Status Demokrasi</span><p class="text-white text-xs leading-loose opacity-80">Aktif: Melibatkan 5 Dusun dengan rata-rata 120+ peserta per musyawarah. Frekuensi: Minimal 2x per tahun atau sesuai kebutuhan mendesak. Kepuasan Warga: 94%.</p></div>`
+            },
+            'simfoni-toleransi': {
+                tag: 'Pluralisme Beragama',
+                title: 'Simfoni Toleransi: Harmoni Perbedaan',
+                subtitle: 'Laboratorium Kerukunan Beragama di Jantung Jati Agung',
+                img: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1200',
+                text: `
+                    <div class="flex flex-col lg:flex-row gap-4 lg:gap-8 -ml-4 lg:-ml-12">
+                        <div class="lg:w-[15%] flex flex-col gap-8 border-r border-white/5 pr-4 shrink-0">
+                            <div class="mt-2 text-left">
+                                <span class="text-[9px] text-gray-500 uppercase tracking-[0.3em] font-bold block mb-3">Nilai Inti</span>
+                                <div class="flex flex-col gap-2">
+                                    <span class="text-[9px] text-gray-400 hover:text-primary transition-colors cursor-default flex items-center gap-2">
+                                        <span class="w-1 h-1 bg-primary/40 rounded-full"></span> #Inklusif
+                                    </span>
+                                    <span class="text-[9px] text-gray-400 hover:text-primary transition-colors cursor-default flex items-center gap-2">
+                                        <span class="w-1 h-1 bg-primary/40 rounded-full"></span> #Pluralistik
+                                    </span>
+                                    <span class="text-[9px] text-gray-400 hover:text-primary transition-colors cursor-default flex items-center gap-2">
+                                        <span class="w-1 h-1 bg-primary/40 rounded-full"></span> #Harmonis
+                                    </span>
+                                    <span class="text-[9px] text-gray-400 hover:text-primary transition-colors cursor-default flex items-center gap-2">
+                                        <span class="w-1 h-1 bg-primary/40 rounded-full"></span> #Berkeadilan
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lg:w-[85%] w-full pr-2">
+                            <section class="mb-16">
+                                <div class="flex items-center gap-4 mb-8 text-left">
+                                    <h2 class="font-oswald text-4xl text-white uppercase tracking-tighter leading-none">
+                                        Integrasi <span class="text-primary italic">&</span> Damai Sejati
+                                    </h2>
+                                    <div class="h-[1px] flex-grow bg-gradient-to-r from-primary/30 to-transparent"></div>
+                                </div>
+                                
+                                <p class="text-2xl leading-relaxed text-gray-200 first-letter:text-8xl first-letter:font-bold first-letter:text-primary first-letter:mr-4 first-letter:float-left first-letter:leading-none mb-8 text-justify">
+                                    Keberagaman di Gedung Agung adalah kekuatan, bukan pemisah. Kehidupan lintas agama dan etnis berjalan beriringan dalam sebuah simfoni yang damai, menjadikan desa ini sebagai contoh nyata moderasi beragama. Warga Muslim, Kristen, dan Hindu hidup dalam satu kampung dengan saling menghormati dan membantu dalam setiap peristiwa penting.
+                                </p>
+                                
+                                <p class="text-gray-400 text-lg leading-loose mb-8 text-justify">
+                                    Suku Jawa, Palembang, dan Lampung juga hidup bersama dengan tetap menghormati nilai-nilai budaya masing-masing. Pernikahan antar-etnis bukan hal yang tabu, bahkan dianggap sebagai simbol penyatuan desa. Dialog antar agama dilakukan secara rutin melalui Forum Kerukunan Umat Beragama yang melibatkan tokoh agama, pemimpin masyarakat, dan warga umum.
+                                </p>
+
+                                <p class="text-gray-400 text-lg leading-loose text-justify">
+                                    Praktik konkret toleransi tampak dalam kehidupan sehari-hari. Saat warga Muslim merayakan Idul Fitri, warga non-Muslim hadir memberikan ucapan dan kunjungan silaturahmi. Sebaliknya, saat perayaan Natal atau Tahun Baru Imlek, umat Muslim ikut ambil bagian. Pembangunan tempat ibadah dilakukan dengan prinsip yang seimbang, memastikan setiap agama mendapatkan fasilitas yang layak tanpa diskriminasi.
+                                </p>
+                            </section>
+
+                            <div class="my-14 group relative overflow-hidden rounded-sm border border-white/5 shadow-2xl">
+                                <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1200" class="w-full h-[450px] object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-1000" alt="Simfoni Toleransi">
+                                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/95 p-8 border-l-4 border-primary ml-0 text-left">
+                                    <p class="text-[13px] text-gray-300 font-medium italic mb-2 tracking-wide">"Dalam perbedaan keyakinan, kami menemukan persatuan; dalam keberagaman agama, kami menemukan keindahan."</p>
+                                    <p class="text-[10px] text-primary/60 uppercase tracking-[0.4em] font-bold">Filosofi Kehidupan Desa 2026</p>
+                                </div>
+                            </div>
+
+                            <section class="mb-16 text-justify">
+                                <h2 class="font-oswald text-3xl text-white mb-8 uppercase tracking-widest flex items-center gap-4 text-primary text-left">
+                                    <span class="w-8 h-[1px] bg-primary"></span> Pencapaian & Pengakuan
+                                </h2>
+                                <p class="text-gray-400 text-lg leading-loose mb-8">
+                                    Desa Gedung Agung telah meraih berbagai penghargaan atas komitmentnya terhadap kerukunan umat beragama. Pemerintah provinsi mengakui desa ini sebagai salah satu model desa toleran terbaik di tingkat regional. Berbagai universitas dan lembaga penelitian telah mengadakan studi lapangan untuk mendokumentasikan mekanisme kerukunan yang berlangsung di sini.
+                                </p>
+                                <p class="text-gray-400 text-lg leading-loose mb-12">
+                                    Selain itu, Desa Gedung Agung menjadi pusat pembelajaran bagi desa-desa lain yang ingin mengembangkan program serupa. Delegasi dari berbagai desa dan kabupaten secara berkala mengunjungi desa ini untuk mempelajari best practices dalam pengelolaan keberagaman. Pengalaman ini membuktikan bahwa toleransi bukan hanya konsep teoritis, tetapi dapat diterapkan secara praktis dalam kehidupan komunal.
+                                </p>
+
+                                <div class="flex justify-center w-full py-10">
+                                    <div class="w-full max-w-xl bg-white/[0.02] p-16 rounded-sm border border-white/5 text-center relative overflow-hidden flex flex-col items-center justify-center min-h-[400px]">
+                                        <i class="fas fa-handshake text-primary/5 text-[220px] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"></i>
+                                        
+                                        <span class="text-[130px] font-bold text-primary font-oswald tracking-tighter block leading-none relative z-10">99%</span>
+                                        
+                                        <div class="relative z-10 mt-4">
+                                            <p class="text-sm text-white font-bold uppercase tracking-[0.8em] mb-6">INDEKS KERUKUNAN</p>
+                                            <div class="h-[1px] w-24 bg-primary/40 mx-auto mb-6"></div>
+                                            <p class="text-gray-400 text-sm leading-relaxed max-w-xs mx-auto italic font-light">
+                                                "Nol konflik horizontal selama 10 tahun terakhir. Indeks kepercayaan antar agama mencapai 99%, tertinggi di wilayah Jati Agung."
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <p class="text-gray-400 text-lg leading-loose text-justify">
+                                    Kunci kesuksesan kerukunan di Gedung Agung adalah kombinasi dari several faktor: leadership yang visioner, partisipasi aktif tokoh agama, pendekatan bottom-up yang menghargai aspirasi grassroots, dan budaya saling menghormati yang telah ditanamkan sejak generasi muda. Program pendidikan karakter di sekolah juga menekankan nilai-nilai keberagaman dan toleransi sejak dini, menciptakan generasi muda yang terbuka terhadap perbedaan.
+                                </p>
+                            </section>
+                        </div>
+                    </div>`,
+                sidebar: `<div class="p-6 bg-white/[0.03] border-l-2 border-primary"><span class="text-primary font-bold text-[10px] uppercase tracking-widest block mb-2 italic">Catatan Sosial</span><p class="text-white text-xs leading-loose opacity-80">Komposisi: Muslim 60%, Kristen 25%, Hindu 15%. Forum Kerukunan: Aktif sejak 2014. Fasilitator: Tokoh Agama Lintas Iman. Pencapaian: 0 Konflik Horizontal, Penghargaan Desa Toleran Tingkat Provinsi.</p></div>`
+            },
+            'kebugaran-komunal': {
+                tag: 'Kesehatan Masyarakat',
+                title: 'Kebugaran Komunal: Raga Sehat, Jiwa Bahagia',
+                subtitle: 'Membangun Ketahanan Fisik dan Mental Melalui Gerak Bersama',
+                img: 'img/senamSore.jpg',
+                text: `
+                    <div class="flex flex-col lg:flex-row gap-4 lg:gap-8 -ml-4 lg:-ml-12">
+                        <div class="lg:w-[15%] flex flex-col gap-8 border-r border-white/5 pr-4 shrink-0">
+                            <div class="mt-2 text-left">
+                                <span class="text-[9px] text-gray-500 uppercase tracking-[0.3em] font-bold block mb-3">Program Aktif</span>
+                                <div class="flex flex-col gap-2">
+                                    <span class="text-[9px] text-gray-400 hover:text-primary transition-colors cursor-default flex items-center gap-2">
+                                        <span class="w-1 h-1 bg-primary/40 rounded-full"></span> #SenamIbuIbu
+                                    </span>
+                                    <span class="text-[9px] text-gray-400 hover:text-primary transition-colors cursor-default flex items-center gap-2">
+                                        <span class="w-1 h-1 bg-primary/40 rounded-full"></span> #JogingPagi
+                                    </span>
+                                    <span class="text-[9px] text-gray-400 hover:text-primary transition-colors cursor-default flex items-center gap-2">
+                                        <span class="w-1 h-1 bg-primary/40 rounded-full"></span> #Kebugaran
+                                    </span>
+                                    <span class="text-[9px] text-gray-400 hover:text-primary transition-colors cursor-default flex items-center gap-2">
+                                        <span class="w-1 h-1 bg-primary/40 rounded-full"></span> #Vitalitas
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="lg:w-[85%] w-full pr-2">
+                            <section class="mb-16">
+                                <div class="flex items-center gap-4 mb-8 text-left">
+                                    <h2 class="font-oswald text-4xl text-white uppercase tracking-tighter leading-none">
+                                        Vitalitas <span class="text-primary italic">&</span> Kebersamaan
+                                    </h2>
+                                    <div class="h-[1px] flex-grow bg-gradient-to-r from-primary/30 to-transparent"></div>
+                                </div>
+                                
+                                <p class="text-2xl leading-relaxed text-gray-200 first-letter:text-8xl first-letter:font-bold first-letter:text-primary first-letter:mr-4 first-letter:float-left first-letter:leading-none mb-8 text-justify">
+                                    Senam rutin ibu-ibu dan warga di Desa Gedung Agung bukan sekadar program kesehatan biasa. Di balik gerakan senam yang energik dan ritme musik yang menggairahkan, terdapat semangat kebersamaan yang kuat dan jiwa penyembuhan kolektif. Ini adalah bukti nyata bahwa kesehatan adalah investasi sosial terbesar yang dapat dilakukan sebuah komunitas.
+                                </p>
+                                
+                                <p class="text-gray-400 text-lg leading-loose mb-8 text-justify">
+                                    Kegiatan ini dimulai sejak tahun 2010 dengan inisiatif sederhana dari beberapa ibu-ibu muda yang peduli terhadap kesehatan masyarakat. Apa yang dimulai dengan peserta hanya 20 orang, kini telah berkembang menjadi program dengan partisipasi rutin lebih dari 150 peserta setiap harinya. Program senam dilaksanakan setiap hari Minggu pagi di halaman Balai Desa, dengan instruktur bersertifikat yang secara bergantian memimpin sesi.
+                                </p>
+
+                                <p class="text-gray-400 text-lg leading-loose text-justify">
+                                    Manfaatnya terasa nyata pada tingkat kesehatan warga yang meningkat signifikan. Studi lapangan menunjukkan bahwa peserta aktif senam memiliki tekanan darah lebih stabil, indeks massa tubuh lebih ideal, dan tingkat stress yang lebih rendah dibanding warga yang tidak aktif. Hal ini pada gilirannya meningkatkan produktivitas kerja, terutama di sektor pertanian dan perdagangan.
+                                </p>
+                            </section>
+
+                            <div class="my-14 group relative overflow-hidden rounded-sm border border-white/5 shadow-2xl">
+                                <img src="img/senamDusun5.jpg" class="w-full h-[450px] object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-1000" alt="Kebugaran Komunal">
+                                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/95 p-8 border-l-4 border-primary ml-0 text-left">
+                                    <p class="text-[13px] text-gray-300 font-medium italic mb-2 tracking-wide">"Gerakan bersama, detak jantung selaras, dan senyum ceria adalah resep rahasia kesehatan sejati di Gedung Agung."</p>
+                                    <p class="text-[10px] text-primary/60 uppercase tracking-[0.4em] font-bold">Kesehatan Komunitas 2026</p>
+                                </div>
+                            </div>
+
+                            <section class="mb-16 text-justify">
+                                <h2 class="font-oswald text-3xl text-white mb-8 uppercase tracking-widest flex items-center gap-4 text-primary text-left">
+                                    <span class="w-8 h-[1px] bg-primary"></span> Dampak Kesehatan & Sosial Ekonomi
+                                </h2>
+                                <p class="text-gray-400 text-lg leading-loose mb-8">
+                                    Kebugaran komunal berkontribusi langsung pada produktivitas sektor pertanian. Warga yang sehat adalah motor penggerak ekonomi desa yang tak tergantikan. Absensi kerja akibat sakit menurun drastis, efisiensi kerja meningkat, dan semangat gotong royong dalam kegiatan bersama juga meningkat signifikan. Penelitian menunjukkan bahwa setiap 1% peningkatan partisipasi dalam program kebugaran komunal, produktivitas pertanian meningkat 0.5%.
+                                </p>
+                                <p class="text-gray-400 text-lg leading-loose mb-12">
+                                    Selain itu, program senam telah membuka lapangan kerja baru. Instruktur senam yang dulunya adalah ibu rumah tangga, kini memiliki penghasilan tambahan yang cukup. Vendor yang menyediakan makan-minum setelah senam juga merasakan peningkatan omset bisnis mereka. Aspek ekonomi ini menunjukkan bahwa investasi dalam kesehatan komunal juga adalah investasi dalam pemberdayaan ekonomi masyarakat lokal.
+                                </p>
+
+                                <div class="flex justify-center w-full py-10">
+                                    <div class="w-full max-w-xl bg-white/[0.02] p-16 rounded-sm border border-white/5 text-center relative overflow-hidden flex flex-col items-center justify-center min-h-[400px]">
+                                        <i class="fas fa-heart text-primary/5 text-[220px] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"></i>
+                                        
+                                        <span class="text-[130px] font-bold text-primary font-oswald tracking-tighter block leading-none relative z-10">85%</span>
+                                        
+                                        <div class="relative z-10 mt-4">
+                                            <p class="text-sm text-white font-bold uppercase tracking-[0.8em] mb-6">PARTISIPASI AKTIF</p>
+                                            <div class="h-[1px] w-24 bg-primary/40 mx-auto mb-6"></div>
+                                            <p class="text-gray-400 text-sm leading-relaxed max-w-xs mx-auto italic font-light">
+                                                "Dari 750+ ibu-ibu potensial, 85% aktif berpartisipasi dalam program senam komunal setiap minggunya."
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <p class="text-gray-400 text-lg leading-loose text-justify">
+                                    Program kebugaran komunal juga menjadi media empowerment perempuan. Melalui kegiatan ini, ibu-ibu mendapatkan kesempatan untuk berkembang, memimpin, dan berkontribusi pada kesejahteraan komunitas. Banyak ibu yang dulunya hanya fokus pada pekerjaan rumah tangga, kini memiliki identitas sosial yang lebih luas sebagai instruktur, koordinator program, atau bahkan pengusaha kecil yang melayani kebutuhan peserta senam.
+                                </p>
+                            </section>
+                        </div>
+                    </div>`,
+                sidebar: `<div class="p-6 bg-white/[0.03] border-l-2 border-primary"><span class="text-primary font-bold text-[10px] uppercase tracking-widest block mb-2 italic">Info Sehat</span><p class="text-white text-xs leading-loose opacity-80">Dilaksanakan setiap Minggu pagi pkl 06.00-07.30 di Balai Desa. Target: 150+ peserta aktif. Instruktur: 8 orang bersertifikat. Pendekatan: Mix senam tradisional & modern. Benefit: Kesehatan Fisik & Mental, Networking Sosial, Empowerment Perempuan.</p></div>`
+            }
+        };
+
+        function renderContent() {
+            const params = new URLSearchParams(window.location.search);
+            const topic = params.get('topic') || 'gema-malam';
+            const data = dataKonten[topic];
+
+            if (data) {
+                document.getElementById('hero-img').src = data.img;
+                document.getElementById('top-tag').innerText = data.tag;
+                document.getElementById('main-title').innerText = data.title;
+                document.getElementById('sub-title').innerText = data.subtitle;
+                document.getElementById('main-content-render').innerHTML = `
+                    <div class="content-area">${data.text}</div>
+                `;
+                document.getElementById('sidebar-render').innerHTML = `
+                    <div class="glass-card p-8 rounded-3xl sticky top-32">
+                        <h3 class="font-oswald text-primary text-xl uppercase mb-6 border-b border-primary/20 pb-4">Info Sosial</h3>
+                        <div class="space-y-4 text-sm">${data.sidebar}</div>
+                    </div>
+                `;
+                document.title = `${data.title} | Desa Gedung Agung`;
+            }
+        }
+
+        window.onload = renderContent;
+
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const closeMenuBtn = document.getElementById('closeMenuBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+
+function toggleMenu() {
+    mobileMenu.classList.toggle('menu-open');
+    document.body.classList.toggle('overflow-hidden');
+}
+
+if(hamburgerBtn) hamburgerBtn.addEventListener('click', toggleMenu);
+if(closeMenuBtn) closeMenuBtn.addEventListener('click', toggleMenu);
+    </script>
+</body>
+</html>
